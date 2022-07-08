@@ -1,0 +1,22 @@
+const http = require('http');
+const testModule = require('./testModule')
+
+const hostname = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  const url = req.url
+  if (url === '/users') {
+    res.end('halo users');
+  } else if(url === '/category') {
+    res.end('Categori');
+  } else {
+    res.end(testModule);
+  }
+});
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
